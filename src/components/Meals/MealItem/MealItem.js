@@ -4,7 +4,13 @@ import MealItemForm from './MealItemForm'
 import CartContext from '../../../store/cart-context'
 export default function MealItem(props) {
     const cartCtx = useContext(CartContext);
-    const price = `$${props.price.toFixed(2)}`;
+    let price = '';
+    if(typeof(props.price) === 'number'){
+        price = `$${props.price.toFixed(2)}`;
+    }else{
+        price = `$${props.price}`;
+    }
+    
      
     const addToCartHandler = amount => {
         cartCtx.addItem({
